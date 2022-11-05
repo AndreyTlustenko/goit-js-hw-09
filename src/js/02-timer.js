@@ -21,7 +21,7 @@ if (currentDate < startDate){
   buttonStart.addEventListener("click", onTimeStart);
 
   function onTimeStart() {
-    setInterval(() => {
+    IntervalId = setInterval(() => {
       const currentDate = Date.now();
       const deltaTime = startDate - currentDate;
       const countDown = convertMs(deltaTime);
@@ -30,7 +30,7 @@ if (currentDate < startDate){
       console.log(countDown);
 
   if (deltaTime < 1000){
-      clearInterval();
+      clearInterval(IntervalId);
         }
       }, 1000);
   }

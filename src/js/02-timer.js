@@ -1,10 +1,6 @@
 import flatpickr from "flatpickr";
 
 const buttonStart = document.querySelector('button[data-start]')
-const Days = document.querySelector('span[data-days]');
-const Hours = document.querySelector('span[data-hours]');
-const Minutes = document.querySelector('span[data-minutes]');
-const Seconds = document.querySelector('span[data-seconds]');
 buttonStart.setAttribute("disabled", true);
 let countDown = null;
 let deltaTime;
@@ -16,12 +12,8 @@ const options = {
     minuteIncrement: 1,
 
 onClose(selectedDates) {
-        // console.log(selectedDates[0]);
-    let currentDate =  Date.now();
-    console.log(currentDate);
-
-const startDate = selectedDates[0].getTime();
-console.log(startDate);
+    const currentDate =  Date.now();
+    const startDate = selectedDates[0].getTime();
 
 if (currentDate < startDate){
   console.log("Ok");
@@ -29,13 +21,18 @@ if (currentDate < startDate){
   buttonStart.addEventListener("click", onTimeStart);
 
   function onTimeStart() {
-    intervalId = setInterval(() => {
+    setInterval(() => {
       const currentDate = Date.now();
       const deltaTime = startDate - currentDate;
-      
       const countDown = convertMs(deltaTime);
+      updateTimer(countDown);
+
       console.log(countDown);
-    }, 1000);
+
+  if (deltaTime < 1000){
+      clearInterval();
+        }
+      }, 1000);
   }
 }else {
 window.alert("Please choose a date in the future");
@@ -43,14 +40,19 @@ window.alert("Please choose a date in the future");
 },
 };
 
-function stopTimer(deltaTime){
-    if (deltaTime <= 0){
-   clearInterval(intervalId);
-   }
-   };
-//     }
-//   };
-// options.onClose(selectedDates);
+
+
+function updateTimer ({days, hours, minutes, seconds}) {
+  const Days = document.querySelector('[data-days]');
+  const Hours = document.querySelector('[data-hours]');
+  const Minutes = document.querySelector('[data-minutes]');
+  const Seconds = document.querySelector('[data-seconds]');
+  Days.textContent = `${days}`;
+  Hours.textContent = `${hours}`;
+  Minutes.textContent = `${minutes}`;
+  Seconds.textContent = `${seconds}`;
+
+}  
 
 const calendar = flatpickr('#datetime-picker', options)
 
@@ -76,6 +78,13 @@ function convertMs(ms) {
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');}
 
+ const Design = document.querySelector(".timer");
+    Design.style.textAlign = "left";
+    Design.style.padding = "20px";
+    Design.style.color = "green";
+    Design.style.fontSize = "20px";
+    
+
 // const timer = {
 //     start() {
 //         const startTime = Date.now();
@@ -98,54 +107,8 @@ function addLeadingZero(value) {
 // });
 
 
-  // let currentDate =  Date.now();
-    // console.log(currentDate);
-// // console.log(selectedDates[0].getTime());
-// const startDate = selectedDates[0].getTime();
-// console.log(startDate);
-
-// if (currentDate < startDate){
-//   console.log("Ok");
-//   buttonStart.removeAttribute("disabled","disabled");
-
-//   buttonStart.addEventListener("click", onTimeStart);
-//   function onTimeStart() {
-
-//     intervalId = setInterval(() => {
-//       const currentDate = Date.now();
-//       const deltaTime = startDate - currentDate;
-      
-//       const countDown = convertMs(deltaTime);
-//       // console.log(countDown);
-//     }, 1000);
-//   }
-// }else {
-// window.alert("Please choose a date in the future");
-// }  
-// },
-// };
-
-// console.log(deltaTime);
-// console.log(countDown);
-// function stopTimer(deltaTime){
-//     if (deltaTime <= 0){
-//    clearInterval(intervalId);
-//    }
-//    };
    
-    // const timerDesign = document.querySelector(".timer");
 
-    // timerDesign.style.color = "teal";
-    // timerDesign.style.fontSize = "18px";
-    // timerDesign.style.textAlign = "left";
-    // // timerDesign.style.display = "flex";
-    // // timerDesign.style.marginRight = "20px";
-    // timerDesign.style.padding = "20px";
-
-    // function updateTimer({ days, hours, minutes, seconds }) {
-    //   const textSeconds = document.querySelector('span[data-seconds]');
-    //   textSeconds.textContent = '${countDown[seconds]}' ;
-    //   }
-
+    
 
 

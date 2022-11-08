@@ -21,7 +21,7 @@ if (currentDate < startDate){
   buttonStart.addEventListener("click", onTimeStart);
 
   function onTimeStart() {
-    IntervalId = setInterval(() => {
+    interval = setInterval(() => {
       const currentDate = Date.now();
       const deltaTime = startDate - currentDate;
       const countDown = convertMs(deltaTime);
@@ -30,7 +30,7 @@ if (currentDate < startDate){
       console.log(countDown);
 
   if (deltaTime < 1000){
-      clearInterval(IntervalId);
+      clearInterval(interval);
         }
       }, 1000);
   }
@@ -39,8 +39,6 @@ window.alert("Please choose a date in the future");
 }  
 },
 };
-
-
 
 function updateTimer ({days, hours, minutes, seconds}) {
   const Days = document.querySelector('[data-days]');
@@ -78,11 +76,11 @@ function convertMs(ms) {
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');}
 
- const Design = document.querySelector(".timer");
-    Design.style.textAlign = "left";
-    Design.style.padding = "20px";
-    Design.style.color = "green";
-    Design.style.fontSize = "20px";
+ const design = document.querySelector(".timer");
+    design.style.textAlign = "left";
+    design.style.padding = "20px";
+    design.style.color = "green";
+    design.style.fontSize = "20px";
     
 
 // const timer = {

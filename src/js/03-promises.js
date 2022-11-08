@@ -37,7 +37,7 @@ refForm.addEventListener("input", () => {
  refForm.addEventListener("submit", (event) =>{
    event.preventDefault();
    console.log(delay, step, amount)
-  for (let i = 0; i <= amount-1; i+=1) {
+  for (let i = 1; i <= amount-1; i+=1) {
    createPromise(i, delay)
   .then(({ position, delay }) => {
     Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);

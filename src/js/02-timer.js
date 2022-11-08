@@ -21,7 +21,7 @@ if (currentDate < startDate){
   buttonStart.addEventListener("click", onTimeStart);
 
   function onTimeStart() {
-    interval = setInterval(() => {
+    let interval = setInterval(() => {
       const currentDate = Date.now();
       const deltaTime = startDate - currentDate;
       const countDown = convertMs(deltaTime);
